@@ -7,12 +7,12 @@ import com.roushan.ecommerce.kafka.OrderProducer;
 import com.roushan.ecommerce.mapper.OrderMapper;
 import com.roushan.ecommerce.mapper.ProductMapper;
 import com.roushan.ecommerce.model.Order;
+import com.roushan.ecommerce.payment.PaymentClient;
 import com.roushan.ecommerce.product.ProductClient;
 import com.roushan.ecommerce.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +27,7 @@ public class OrderService {
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
     private final OrderMapper orderMapper;
+    private final PaymentClient paymentClient;
 
 
     public Integer createOrder(OrderRequest request) {
@@ -51,7 +52,15 @@ public class OrderService {
             orderLineService.saveOrderLine(orderLineRequest);
         }
 
-        //TODO start payment process
+        // start payment process
+        PaymentRequest paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer);
+        paymentClient.requestOrderPayment(paymentRequest);
+
 
         // send order confirmation --> notification -ms (kafka)
         orderProducer.sendOrderConfirmation(new OrderConfirmation(
