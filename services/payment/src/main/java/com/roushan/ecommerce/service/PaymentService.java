@@ -2,18 +2,23 @@ package com.roushan.ecommerce.service;
 
 import com.roushan.ecommerce.dto.PaymentNotificationRequest;
 import com.roushan.ecommerce.dto.PaymentRequest;
-import com.roushan.ecommerce.mapper.paymentMapper;
+import com.roushan.ecommerce.mapper.PaymentMapper;
 import com.roushan.ecommerce.model.Payment;
 import com.roushan.ecommerce.notification.NotificationProducer;
 import com.roushan.ecommerce.repository.PaymentRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class PaymentService {
-    private final PaymentRepository repository;
-    private final paymentMapper mapper;
+
+    @Autowired
+    private PaymentRepository repository;
+
+    @Autowired
+    private PaymentMapper mapper;
+
+    @Autowired
     private NotificationProducer notificationProducer;
 
 

@@ -5,7 +5,7 @@ import com.roushan.ecommerce.model.Payment;
 import org.springframework.stereotype.Service;
 
 @Service
-public class paymentMapper {
+public class PaymentMapper {
     public Payment toPayment(PaymentRequest request) {
         Payment payment = Payment.builder()
                 .id(request.id())
