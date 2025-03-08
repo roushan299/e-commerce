@@ -3,8 +3,8 @@ package com.roushan.notification.email;
 import com.roushan.notification.dto.Products;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -18,12 +18,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class EmailService {
 
-    private final JavaMailSender mailSender;
-    private final SpringTemplateEngine templateEngine;
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     @Async
     public void sendPaymentSuccessEmail(String destinationEmail, String customerName, BigDecimal amount, String orderReference) throws MessagingException {

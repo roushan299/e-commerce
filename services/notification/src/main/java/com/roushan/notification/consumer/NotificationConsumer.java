@@ -7,19 +7,21 @@ import com.roushan.notification.model.Notification;
 import com.roushan.notification.model.NotificationType;
 import com.roushan.notification.repository.NotificationRepository;
 import jakarta.mail.MessagingException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class NotificationConsumer {
 
-    private final NotificationRepository repository;
-    private final EmailService emailService;
+    @Autowired
+    private NotificationRepository repository;
+
+    @Autowired
+    private EmailService emailService;
 
     @KafkaListener(topics = "payment-topic")
     public void consumerPaymentSuccessNotification(PaymentConfirmation paymentConfirmation) throws MessagingException {
