@@ -8,6 +8,7 @@ import com.roushan.ecommerce.mapper.CustomerMapper;
 import com.roushan.ecommerce.model.Customer;
 import com.roushan.ecommerce.repository.CustomerRepository;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerService {
 
-    private final CustomerRepository repository;
-    private final CustomerMapper mapper;
+    @Autowired
+    private CustomerRepository repository;
 
-    public CustomerService(CustomerRepository repository, CustomerMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
+    @Autowired
+    private CustomerMapper mapper;
+
 
     public String createCustomer(CustomerRequest request) {
         Customer customer = repository.save(mapper.toCustomer(request));

@@ -8,23 +8,23 @@ spring:
         - id: customer-service
           uri: lb:http://CUSTOMER_SERVICE
           predicates:
-            -Path=/api/v1/customers/**
+            - Path=/api/v1/customers/**
         - id: order-service
           uri: lb:http://ORDER_SERVICE
           predicates:
-            -Path=/api/v1/orders/**
+            - Path=/api/v1/orders/**
         - id: order-line-service
           uri: lb:http://CUSTOMER_SERVICE
           predicates:
-            -Path=/api/v1/orders-lines/**
+            - Path=/api/v1/orders-lines/**
         - id: payment-service
           uri: lb:http://PAYMENT_SERVICE
           predicates:
-            -Path=/api/v1/payment/**
+            - Path=/api/v1/payment/**
         - id: product-service
           uri: lb:http://PRODUCT_SERVICE
           predicates:
-            -Path=/api/v1/products/**
+            - Path=/api/v1/products/**
 
 server:
   port: 8222

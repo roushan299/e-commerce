@@ -4,7 +4,7 @@ import com.roushan.ecommerce.dto.CustomerRequest;
 import com.roushan.ecommerce.dto.CustomerResponse;
 import com.roushan.ecommerce.service.CustomerService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +14,8 @@ import java.util.List;
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 
-    private final CustomerService service;
-
-    public CustomerController(CustomerService service) {
-        this.service = service;
-    }
+    @Autowired
+    private CustomerService service;
 
 
     @PostMapping

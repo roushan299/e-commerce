@@ -3,3 +3,7 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: gateway-service
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
