@@ -9,7 +9,7 @@ import com.roushan.ecommerce.mapper.ProductMapper;
 import com.roushan.ecommerce.model.Product;
 import com.roushan.ecommerce.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,11 +18,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository repository;
-    private final ProductMapper mapper;
+    @Autowired
+    private ProductRepository repository;
+
+    @Autowired
+    private ProductMapper mapper;
+
     public Integer createProduct(ProductRequest request) {
         Product product =  mapper.toProduct(request);
         repository.save(product);

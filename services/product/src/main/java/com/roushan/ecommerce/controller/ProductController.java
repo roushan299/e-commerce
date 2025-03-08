@@ -6,7 +6,7 @@ import com.roushan.ecommerce.dto.ProductRequest;
 import com.roushan.ecommerce.dto.ProductResponse;
 import com.roushan.ecommerce.service.ProductService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
-@RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService service;
+    @Autowired
+    private ProductService service;
 
     @PostMapping
     public ResponseEntity<Integer> createProduct(@RequestBody @Valid ProductRequest request){
