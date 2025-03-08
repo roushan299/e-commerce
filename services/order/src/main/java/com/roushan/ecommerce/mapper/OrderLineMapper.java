@@ -4,7 +4,9 @@ import com.roushan.ecommerce.dto.OrderLineRequest;
 import com.roushan.ecommerce.dto.OrderLineResponse;
 import com.roushan.ecommerce.model.Order;
 import com.roushan.ecommerce.model.OrderLine;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderLineMapper {
     public OrderLine toOrderLine(OrderLineRequest orderLineRequest) {
         OrderLine orderLine = OrderLine.builder()

@@ -11,23 +11,37 @@ import com.roushan.ecommerce.payment.PaymentClient;
 import com.roushan.ecommerce.product.ProductClient;
 import com.roushan.ecommerce.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class OrderService {
 
-    private final OrderRepository repository;
-    private final CustomerClient customerClient;
-    private final ProductClient productClient;
-    private final ProductMapper productMapper;
-    private final OrderLineService orderLineService;
-    private final OrderProducer orderProducer;
-    private final OrderMapper orderMapper;
-    private final PaymentClient paymentClient;
+    @Autowired
+    private OrderRepository repository;
+
+    @Autowired
+    private CustomerClient customerClient;
+
+    @Autowired
+    private ProductClient productClient;
+
+    @Autowired
+    private ProductMapper productMapper;
+
+    @Autowired
+    private OrderLineService orderLineService;
+
+    @Autowired
+    private OrderProducer orderProducer;
+
+    @Autowired
+    private OrderMapper orderMapper;
+
+    @Autowired
+    private PaymentClient paymentClient;
 
 
     public Integer createOrder(OrderRequest request) {
