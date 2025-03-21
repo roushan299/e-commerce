@@ -2,7 +2,6 @@ package com.roushan.ecommerce.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
